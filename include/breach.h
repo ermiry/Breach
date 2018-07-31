@@ -10,4 +10,12 @@
 
 #include <ncurses.h>
 
+typedef struct {
+
+    int xPos;
+    int yPos;
+    unsigned int health;
+
+} Player;
+
 #endif 
