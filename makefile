@@ -7,10 +7,10 @@ SRCDIR = ./src/
 SOURCES = $(SRCDIR)*.c
 		  # \ $(SRCDIR)utils/*.c
 
-all: breach #run clean
+all: breach run #clean
 
 breach: $(SOURCES)
-	$(CC) $(SOURCES) $(CFLAGS) -o ./bin/search
+	$(CC) $(SOURCES) $(CFLAGS) -o ./bin/breach
 
 run:
 	./bin/breach
