@@ -33,10 +33,8 @@ int main (void) {
     Player *user = playerSetUp ();
 
     int ch;
-    while ((ch = getch ()) != 'q') {
+    while ((ch = getch ()) != 'q')
         handleInput (ch, user);
-    }
-
 
     free (user);
     endwin ();

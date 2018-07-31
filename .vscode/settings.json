@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "breach.h": "c"
+        "breach.h": "c",
+        "corridor.h": "c"
     }
 }

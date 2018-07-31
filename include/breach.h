@@ -10,6 +10,7 @@
 
 #include <ncurses.h>
 
+// TODO: more likely we are going to move this data structs to their own sperate files
 typedef struct {
 
     int xPos;
@@ -17,5 +18,7 @@ typedef struct {
     unsigned int health;
 
 } Player;
+
+
 
 #endif 
