@@ -34,7 +34,7 @@ typedef struct {
     unsigned int width;
 
     // TODO: we eill test if this is the best way to instantiate floors and walls
-    unsigned int **tiles;
+    // unsigned int **tiles;
 
     Room **rooms;
     Corridor **corridors;
@@ -65,7 +65,7 @@ void generateRoomsAndCorridors (Map *map) {
 
 }
 
-void setTilesValuesForRooms (Map *map) {
+/* void setTilesValuesForRooms (Map *map) {
 
     for (unsigned int i = 0; i < numRooms; i++) {
         for (unsigned int x = 0; x < map->rooms[i]->width; x++) {
@@ -101,7 +101,7 @@ void setTilesValuesForCorridors (Map *map) {
         }
     }
 
-}
+} */
 
 // TODO: where and how do we spawn the player??
 // Main Thread of the map generation
@@ -110,12 +110,15 @@ void generateMap () {
     Map *map = (Map *) malloc (sizeof (Map));
 
     // We are testing with a 16:9 ratio
-    map->width = 54;
-    map->height = 96;
+    // map->width = 54;
+    // map->height = 96;
 
-    map->tiles = (unsigned int **) malloc (map->width * sizeof (unsigned int *));
-    for (int i = 0; i < map->width; i++)
-        map->tiles[i] = (unsigned int *) malloc (map->height * sizeof (unsigned int));
+    map->width = 80;
+    map->height = 30;
+
+    // map->tiles = (unsigned int **) malloc (map->width * sizeof (unsigned int *));
+    // for (int i = 0; i < map->width; i++)
+    //     map->tiles[i] = (unsigned int *) malloc (map->height * sizeof (unsigned int));
 
     map->rooms = (Room **) calloc (numRooms, sizeof (Room *));
     // lets see how it goes having a corridor less than the number rooms
@@ -123,11 +126,17 @@ void generateMap () {
 
     generateRoomsAndCorridors (map);
 
-    setTilesValuesForRooms (map);
+    // setTilesValuesForRooms (map);
 
-    setTilesValuesForCorridors (map);
+    // setTilesValuesForCorridors (map);
 
-    // TODO: how do we want to draw the map??
+    // Draw the rooms
+    for (unsigned int i = 0; i < numRooms; i++)
+        drawRoom (map->rooms[i]);
+
+    // Draw the corridors
+    for (unsigned int i = 0; i < numRooms - 1; i++) 
+        drawCorridor (map->corridors[i]);
 
 }
 

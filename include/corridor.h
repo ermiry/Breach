@@ -21,4 +21,6 @@ extern int getEndYPos (Corridor *);
 // FIXME:
 // extern Corridor *createCorridor (Room *, unsigned int);
 
+extern void drawCorridor (Corridor *);
+
 #endif 

@@ -4,6 +4,7 @@
         "corridor.h": "c",
         "limits": "c",
         "utilities.h": "c",
-        "room.h": "c"
+        "room.h": "c",
+        "curses.h": "c"
     }
 }

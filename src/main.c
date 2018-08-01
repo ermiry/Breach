@@ -1,9 +1,12 @@
 #include "breach.h"
 
+#include <time.h>
+
 // FIXME: move these
 Player *playerSetUp ();
 void handleInput (int, Player *);
 
+// TODO:  do we need a separte screen file??
 void screenSetUp () {
 
     initscr ();
@@ -13,22 +16,16 @@ void screenSetUp () {
 
 }
 
-void mapSetUp () {
-
-    mvprintw (10, 10, "----------");
-    mvprintw (11, 10, "|........|");
-    mvprintw (12, 10, "|........|");
-    mvprintw (13, 10, "|........|");
-    mvprintw (14, 10, "|........|");
-    mvprintw (15, 10, "----------");
-
-}
+// FIXME: this is for testing
+extern void generateMap ();
 
 int main (void) {
 
+    srand (time (NULL));
+
     screenSetUp ();
 
-    mapSetUp ();
+    generateMap ();
 
     Player *user = playerSetUp ();
 

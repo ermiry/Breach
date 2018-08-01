@@ -27,7 +27,7 @@ Corridor *createCorridor (Room *room, unsigned int length,
 
     Corridor *c = (Corridor *) malloc (sizeof (Corridor *));
 
-    c->dir = (Direction) randomInt (0, 3);
+    c->dir = (Direction) randomInt (0, 4);
 
     Direction oppositeDir = (Direction) (((int) room->enteringCorridor + 2) % 4);
 
@@ -69,5 +69,25 @@ Corridor *createCorridor (Room *room, unsigned int length,
     c->length = clampInt (c->length, 1, maxLength);
 
     return c;
+
+}
+
+void drawRoom (Room *r) {
+
+    // draw top & bottom
+    for (unsigned int x = r->xPos; x <= r->xPos + r->width; x++) {
+        mvprintw (r->yPos, x, "-");  // bottom
+        mvprintw (r->yPos - r->height + 1, x, "_"); // top
+    }
+
+    for (unsigned int y = r->yPos - 1; y > r->yPos - r->height + 1; y--) {
+        // draw walls
+        mvprintw (y, r->xPos, "|");
+        mvprintw (y, r->xPos + r->width, "|");
+
+        // draw floor
+        for (int x = r->xPos + 1; x < r->xPos + r->width; x++)
+            mvprintw (y, x, ".");
+    }
 
 }

@@ -1,5 +1,7 @@
 #include "breach.h"
 
+// FIXME: we will have to move the input logic away from here!!
+
 Player *playerSetUp () {
 
     Player *newPlayer = (Player *) malloc (sizeof (Player));

@@ -15,7 +15,6 @@ unsigned int randomInt (unsigned int min, unsigned int max) {
         high = min;
     }
 
-    srand (time (NULL));
     return (rand () % (high - low)) + low;
 
 }

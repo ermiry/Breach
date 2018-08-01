@@ -1,5 +1,7 @@
 #include <stdlib.h>
 
+#include <ncurses.h>
+
 #include "room.h"
 #include "corridor.h"
 
@@ -14,8 +16,8 @@ Room *createMainRoom (unsigned int mapWidth, unsigned int mapHeight) {
     mainRoom->width = randomInt (MIN_ROOOM_WIDTH, 8);
 
     // place it roughly in the middle of the map
-    mainRoom->xPos = mapHeight / 2;
-    mainRoom->yPos = mapWidth / 2;
+    mainRoom->xPos = (mapWidth / 2) - mainRoom->width;
+    mainRoom->yPos = (mapHeight / 2) - mainRoom->height;
 
     return mainRoom;
 
@@ -32,8 +34,7 @@ Room *createRoom (unsigned int mapWidth, unsigned int mapHeight, Corridor *corri
 
     switch (newRoom->enteringCorridor) {
         case North: 
-            // TODO: do we need to clamp this value??
-            // newRoom->height = clampInt (newRoom->height, 1, mapHeight - getEndYPos (corridor));
+            newRoom->height = clampInt (newRoom->height, 4, mapHeight - getEndYPos (corridor));
             // the y coord of the room must be at the end of the corridor
             newRoom->yPos = getEndYPos (corridor);
             // get a random x pos but between a range
@@ -59,5 +60,25 @@ Room *createRoom (unsigned int mapWidth, unsigned int mapHeight, Corridor *corri
     }
 
     return newRoom;
+
+}
+
+void drawRoom (Room *r) {
+
+    // draw top & bottom
+    for (unsigned int x = r->xPos; x <= r->xPos + r->width; x++) {
+        mvprintw (r->yPos, x, "-");  // bottom
+        mvprintw (r->yPos - r->height + 1, x, "_"); // top
+    }
+
+    for (unsigned int y = r->yPos - 1; y > r->yPos - r->height + 1; y--) {
+        // draw walls
+        mvprintw (y, r->xPos, "|");
+        mvprintw (y, r->xPos + r->width, "|");
+
+        // draw floor
+        for (int x = r->xPos + 1; x < r->xPos + r->width; x++)
+            mvprintw (y, x, ".");
+    }
 
 }
