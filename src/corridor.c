@@ -22,7 +22,6 @@ int getEndYPos (Corridor *c) {
 
 }
 
-// FIXME: setup other parameters
 Corridor *createCorridor (Room *room, unsigned int length,
     unsigned int mapWidth, unsigned int mapHeight, bool firstCorridor) {
 
