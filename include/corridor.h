@@ -1,9 +1,11 @@
 #ifndef CORRIDOR_H_
 #define CORRIDOR_H_
 
+#include "room.h"
+
 typedef enum { North, East, South, West } Direction;
 
-typedef struct {
+typedef struct Corridor {
 
     int startXPos;
     int startYPos;
@@ -16,6 +18,7 @@ typedef struct {
 extern int getEndXPos (Corridor *);
 extern int getEndYPos (Corridor *);
 
-extern Corridor *createCorridor (Room *, unsigned int);
+// FIXME:
+// extern Corridor *createCorridor (Room *, unsigned int);
 
 #endif 

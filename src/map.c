@@ -23,9 +23,6 @@
 // TODO: for now this is only for testing, later we will want to have varibale number of rooms
 unsigned int numRooms = 4;
 
-// FIXME: this shouldn't go here!! You are not in OOP!!
-// unsigned int roomWidth = randomInt (4, 8);
-// unsigned int roomHeight = randomInt (4, 8)
 
 // lets try thius to solve our references problems
 typedef struct {
@@ -33,10 +30,16 @@ typedef struct {
     unsigned int height;
     unsigned int width;
 
+    // TODO: we eill test if this is the best way to instantiate floors and walls
+    unsigned int **tiles;
+
     Room **rooms;
     Corridor **corridors;
 
 } Map;
+
+// FIXME:
+extern Corridor *createCorridor (Room *, unsigned int);
 
 // Generates the rooms and connects them with corridors
 void generateRooms (Map *map) {
@@ -65,7 +68,14 @@ void generateMap () {
 
     Map *map = (Map *) malloc (sizeof (Map));
 
-    // TODO: do we need a tile array for tiletypes??
+    // We are testing with a 16:9 ratio
+    map->width = 54;
+    map->height = 96;
+
+    // FIXME:
+    // map->tiles = (int **) calloc (map->height, sizeof (int));
+    // for (int i = 0; i < map->height; i++) 
+    //     map->tiles[i] = (int *) calloc (map->width, sizeof (int));
 
     map->rooms = (Room **) calloc (numRooms, sizeof (Room *));
     // lets see how it goes having a corridor less than the number rooms
@@ -73,7 +83,7 @@ void generateMap () {
 
     generateRooms (map);
 
-    // TODO: how do we want to draw the walls??
+    // TODO: how do we want to draw the map??
 
 }
 

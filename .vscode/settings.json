@@ -2,6 +2,8 @@
     "files.associations": {
         "breach.h": "c",
         "corridor.h": "c",
-        "limits": "c"
+        "limits": "c",
+        "utilities.h": "c",
+        "room.h": "c"
     }
 }

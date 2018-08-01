@@ -3,7 +3,10 @@
 
 #include "corridor.h" 
 
-typedef struct {
+#define MIN_ROOOM_HEIGHT 4
+#define MIN_ROOOM_WIDTH 4
+
+typedef struct Room {
 
     // lower left tile of the room
     int xPos, yPos;

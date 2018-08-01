@@ -10,8 +10,8 @@ Room *createMainRoom (unsigned int mapWidth, unsigned int mapHeight) {
 
     Room *mainRoom = (Room *) malloc (sizeof (Room));
 
-    mainRoom->height = randomInt (4, 8);
-    mainRoom->width = randomInt (4, 8);
+    mainRoom->height = randomInt (MIN_ROOOM_HEIGHT, 8);
+    mainRoom->width = randomInt (MIN_ROOOM_WIDTH, 8);
 
     // place it roughly in the middle of the map
     mainRoom->xPos = mapHeight / 2;
