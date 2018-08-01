@@ -9,6 +9,8 @@
 #include "room.h"
 #include "corridor.h"
 
+#include "utilities.h"
+
 // TODO: do we want to have a coordinate system?? using a coord struct?
 
 // TODO: is it a good idea to have tiletypes??
@@ -36,12 +38,28 @@ typedef struct {
 
 } Map;
 
-// Connect the rooms using the corridors
-void connectRooms () {
+// Generates the rooms and connects them with corridors
+void generateRooms (Map *map) {
 
+    // create the main room
+    map->rooms[0] = createMainRoom (map->width, map->height);
+
+    // create the first corridor using the main room
+    // FIXME: 
+    map->corridors[0] = createCorridor (map->rooms[0], randomInt (6, 10));
+
+    // setup the other rooms
+    for (int i = 1; i < numRooms; i++) {
+        map->rooms[i] = createRoom (map->width, map->height, map->corridors[i - 1]);
+        // if we haven't created all the corridors
+        if (i < (numRooms - 1)) 
+            map->corridors[i] = createCorridor (map->rooms[i], randomInt (6, 10));  // FIXME:
+        
+    }
 
 }
 
+// TODO: where and how do we spawn the player??
 // Main Thread of the map generation
 void generateMap () {
 
@@ -53,7 +71,9 @@ void generateMap () {
     // lets see how it goes having a corridor less than the number rooms
     map->corridors = (Corridor **) calloc (numRooms - 1, sizeof (Corridor *));
 
-    connectRooms (map);
+    generateRooms (map);
+
+    // TODO: how do we want to draw the walls??
 
 }
 

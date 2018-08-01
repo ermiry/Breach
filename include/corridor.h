@@ -13,4 +13,9 @@ typedef struct {
 
 } Corridor;
 
+extern int getEndXPos (Corridor *);
+extern int getEndYPos (Corridor *);
+
+extern Corridor *createCorridor (Room *, unsigned int);
+
 #endif 

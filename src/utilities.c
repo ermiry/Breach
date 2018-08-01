@@ -19,3 +19,11 @@ unsigned int randomInt (unsigned int min, unsigned int max) {
     return (rand () % (high - low)) + low;
 
 }
+
+int clampInt (int value, int min, int max) {
+
+    if (value > max) return max;
+    else if (value < min) return min;
+    else return value;
+
+}
